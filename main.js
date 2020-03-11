@@ -1,77 +1,78 @@
-import Nombre from './Nombre.js';
-import Tiempo from './tiempo.js';
-import Fecha from './fecha.js';
-import Doctor from './doctor.js';
-import Paciente from './paciente.js';
-import Cita from './cita.js';
-import Hospital from './hospital.js';
+import cita from "./cita.js"
+import Doctor from "./doctor.js"
+import Fecha from "./fecha.js"
+import Hospital from "./hospital.js"
+import Nombre from "./nombre.js"
+import Paciente from "./paciente.js"
+import tiempo from "./tiempo.js"
 
-class Main {
-  constructor() {
-    this.tiempo1 = new Tiempo({ hora: 10, minuto: 25, periodo: 'am' });
-    this.tiempo2 = new Tiempo({ hora: 10, minuto: 25, periodo: 'pm' });
+class Main{
+    constructor(){
+        this.nombre1 = new Nombre("kevin", "rene", "mancilla")
+        this.doctor = new Doctor(this.nombre1,"jefe","3121105426","cedula:23245")
+        this.paciente = new Paciente(this.nombre1,new Fecha(new Date(2001, 8, 27)),"3121105426")
+        this.tiempo = new tiempo(this.tiempo)
+        this.cita = new cita (new Fecha(new Date(2001,8,27)),this.tiempo,this.doctor,this.paciente)
+        this.fecha = new Fecha(this.fecha)
+        this.hospital = new Hospital("Puerta de Hierro", "Av Pino Suarez","Num #674")
+        this.hora = new tiempo(3, 50, "am")
+        
+    }
 
-    this.fecha = new Fecha(15, 6, 2005);
+    Nombre(){
+        console.log(this.nombre1.getNombreCompleto())
+        console.log(this.nombre1.getApellidoNombre())
+        console.log(this.nombre1.getIniciales())
+    }
 
-    this.nombre = new Nombre('Juan', 'Pérez', 'Díaz');
-    this.nombre2 = new Nombre('María', 'Ramos', 'Ramírez');
+    Doctor(){
+        console.log(`Datos del Doctor = ${this.doctor.getPerfil()}`)
+    }
 
-    this.paciente = new Paciente(this.nombre, this.fecha, 3123454367);
+    Paciente(){
+        console.log(`El paciente es: ${this.paciente.getPerfil()}`)
+    }
 
-    this.doctor = new Doctor(this.nombre2, 'Cardiólogo', 3125677896, 445566);
+    Tiempo(){
+        let hora = new tiempo(3, 50, "am")
+        let hora2 = new tiempo(4, 50, "pm")
+        console.log(`La hora esta programada para las ${hora.getFormato12()}`)
+        console.log(`La hora esta programada para las ${hora.getFormato24()}`)
+        console.log(`La hora esta programada para las ${hora2.getFormato12()}`)
+        console.log(`La hora esta programada para las ${hora2.getFormato24()}`)
+    }
 
-    this.cita = new Cita(this.fecha, this.tiempo1, this.doctor, this.paciente);
+    Cita(){
+        console.log(`Cita programada para ${this.cita.getCita()}`)
+    }
 
-    this.hospital = new Hospital('Puerta de Hierro', 'Av. Constitución 100');
-  }
+    Fecha(){
+        let fechaP = new Fecha(27,8,2001)
+        console.log(`Son ${fechaP.getAños()} años`)
+        console.log(`Son ${fechaP.getMeses()} meses`)
+        console.log(`Son ${fechaP.getSemanas()} semanas`)
+        console.log(`Son ${fechaP.getDias()} dias `)
+        console.log(fechaP.getFecha())
+        console.log(fechaP.getDiaFecha())
+    }
 
-  probarTiempo() {
-    console.log(this.tiempo1.getFormato12());
-    console.log(this.tiempo2.getFormato12());
-    console.log(this.tiempo1.getFormato24());
-    console.log(this.tiempo2.getFormato24());
-  }
-
-  probarFecha() {
-    console.log(this.fecha.getAños());
-    console.log(this.fecha.getMeses());
-    console.log(this.fecha.getSemanas());
-    console.log(this.fecha.getDias());
-    console.log(this.fecha.getFecha());
-    console.log(this.fecha.getDiaFecha());
-  }
-
-  probarNombre() {
-    console.log(this.nombre.getNombreCompleto());
-    console.log(this.nombre.getApellidoNombre());
-    console.log(this.nombre.getIniciales());
-  }
-
-  probarPaciente() {
-    console.log(this.paciente.getPerfil());
-  }
-
-  probarDoctor() {
-    console.log(this.doctor.getPerfil());
-  }
-
-  probarCita() {
-    console.log(this.cita.getCita());
-  }
-
-  probarHospital() {
-    this.hospital.registrarDoctor(this.doctor);
-    this.hospital.registrarCita(this.cita);
-    this.hospital.listarDoctores();
-    this.hospital.listarCitas();
-  }
+    Hospital(){
+            this.hospital.registrarDoctor(this.doctor)
+            this.hospital.registrarCita(this.cita)
+            this.hospital.listarDoctores()
+            this.hospital.listarCitas()
+    }
 }
-let app = new Main();
 
-app.probarTiempo();
-app.probarFecha();
-app.probarNombre();
-app.probarPaciente();
-app.probarDoctor();
-app.probarCita();
-app.probarHospital();
+    let verificar = new Main()
+
+    verificar.Nombre()
+    verificar.Doctor()
+    verificar.Paciente()
+    verificar.Tiempo()
+    verificar.Cita()
+    verificar.Fecha()
+    verificar.Hospital()
+    
+
+

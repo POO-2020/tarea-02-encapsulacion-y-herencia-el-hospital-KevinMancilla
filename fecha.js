@@ -1,66 +1,58 @@
-export default class Fecha {
-  /**
-   *
-   * @param {number} dia
-   * @param {number} mes
-   * @param {number} año
-   */
-  constructor(dia, mes, año) {
-    this.fecha = new Date(año, mes - 1, dia);
-  }
+export default class Fecha{
+    constructor(fecha){
+        this._fecha = fecha
+        this._fechaActual = new Date()
+        this._años = Math.floor(((this._fechaActual - this._fecha) / (1000 * 60 * 60 * 24) / 365));
+        this._mes = [
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre",
+        ]
+        
+    }
+    getAños(){
+        return this._años
+    }
 
-  getAños() {
-    let hoy = new Date(Date.now());
-    let años = hoy.getFullYear() - this.fecha.getFullYear();
-    return años;
-  }
+    getMeses(){
+        return (this._años*12)
+    }
 
-  getMeses() {
-    return this.getAños() * 12;
-  }
+    getSemanas(){
+        return (this._años*12*4)
+    }
 
-  getSemanas() {
-    return this.getMeses() * 4;
-  }
+    getDias(){
+        return (this._años*12*4*7)
+    }
+    
+    getFecha(){
+        return (`${this._fechaActual.getDate()}/${this._mes[this._fechaActual.getMonth()]}/${this._fechaActual.getFullYear()}`)
+    }
 
-  getDias() {
-    return this.getSemanas() * 7;
-  }
-
-  getFecha() {
-    return `${this.fecha.getDate()}/${
-      nombreMes[this.fecha.getMonth()]
-    }/${this.fecha.getFullYear()}`;
-  }
-
-  getDiaFecha() {
-    let dia = nombreDia[this.fecha.getDay()];
-
-    return dia;
-  }
+    getDiaFecha(){
+        let dia = this._fechaActual.getDay()
+    
+        let semana = [
+            "Domingo",
+            "Lunes",
+            "Martes",
+            "Miercoles",
+            "Jueves",
+            "Viernes",
+            "Sabado",
+            "Domingo"]
+        return semana[dia]
+    }
 }
 
-const nombreDia = [
-  'Domingo',
-  'Lunes',
-  'Martes',
-  'Miércoles',
-  'Jueves',
-  'Viernes',
-  'Sabado'
-];
-
-const nombreMes = [
-  'Ene',
-  'Feb',
-  'Mar',
-  'Abr',
-  'May',
-  'Jun',
-  'Jul',
-  'Ago',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dic'
-];
+    
