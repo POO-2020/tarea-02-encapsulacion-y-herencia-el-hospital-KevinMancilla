@@ -13,7 +13,7 @@ export default class hospital{
     listarDoctores(){
         console.log("- - - - - - Lista de los doctores - - - - - - ")
         this._doctores.forEach( (doct, i) => {
-            console.log(`(${i+1}) ${doct.getPerfil()}`)
+            console.log(`No. (${i+1}): ${doct.getPerfil()}`)
         })
     }
 
@@ -24,7 +24,7 @@ export default class hospital{
     listarCitas(){
         console.log("- - - - - - Citas programadas - - - - - - ")
         this._citas.forEach( (cita, i) => {
-            console.log(`(${i+1}) ${cita.getCita()}`)
+            console.log(`No. (${i+1}):  ${cita.getCita()}`)
         })
     }
 }

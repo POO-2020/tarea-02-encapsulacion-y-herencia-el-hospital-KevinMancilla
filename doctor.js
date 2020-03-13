@@ -6,6 +6,9 @@ export default class doctor{
         this._telefono = telefono
         this._cedula = cedula
     }
+    getNombreCompleto(){
+        return `${this._nombre.getNombreCompleto()}`
+    }
     getPerfil(){
         return (`${this._cedula}, ${this._especialidad}, ${this._nombre.getNombreCompleto()}, ${this._telefono}`)
     }
